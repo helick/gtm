@@ -10,5 +10,6 @@ if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
     require_once $composer;
 }
 
-// Helpers
+// Constants & helpers
+require_once __DIR__ . '/src/constants.php';
 require_once __DIR__ . '/src/helpers.php';
