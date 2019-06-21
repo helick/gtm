@@ -15,47 +15,17 @@ final class Snippet implements Bootable
     {
         $self = new static;
 
+        add_action('wp_head', [$self, 'dataLayer'], 1, 0);
         add_action('wp_head', [$self, 'head'], 1, 0);
         add_action('wp_body_open', [$self, 'body'], 1, 0);
     }
 
     /**
-     * Display the head snippet.
+     * Display the data layer snippet.
      *
      * @return void
      */
-    public function head(): void
-    {
-        $this->displayDataLayer();
-
-        $this->displayHeadSnippet();
-    }
-
-    /**
-     * Display the body snippet.
-     *
-     * @return void
-     */
-    public function body(): void
-    {
-        $snippet = <<<HTML
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-HTML;
-
-        $containerId = containerId();
-
-        echo sprintf($snippet, esc_js($containerId)), "\n";
-    }
-
-    /**
-     * Display the data layer.
-     *
-     * @return void
-     */
-    private function displayDataLayer(): void
+    public function dataLayer(): void
     {
         $snippet = '<script>%s=[%s]</script>';
 
@@ -78,7 +48,7 @@ HTML;
      *
      * @return void
      */
-    private function displayHeadSnippet(): void
+    public function head(): void
     {
         $snippet = <<<HTML
 <!-- Google Tag Manager -->
@@ -98,5 +68,24 @@ HTML;
             esc_js($dataLayerVariable),
             esc_js($containerId)
         ), "\n";
+    }
+
+    /**
+     * Display the body snippet.
+     *
+     * @return void
+     */
+    public function body(): void
+    {
+        $snippet = <<<HTML
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+HTML;
+
+        $containerId = containerId();
+
+        echo sprintf($snippet, esc_js($containerId)), "\n";
     }
 }
