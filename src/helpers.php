@@ -140,10 +140,10 @@ function dataLayer(): array
         $user = wp_get_current_user();
 
         $dataLayer['user'] = [
-            'id'           => $user->get('ID'),
-            'slug'         => $user->get('user_nicename'),
-            'name'         => $user->get('display_name'),
-            'capabilities' => array_keys($user->get('caps')),
+            'id'           => $user->ID,
+            'slug'         => $user->user_nicename,
+            'name'         => $user->display_name,
+            'capabilities' => array_keys($user->caps),
         ];
     }
 
