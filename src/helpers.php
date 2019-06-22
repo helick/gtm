@@ -70,21 +70,21 @@ function dataLayer(): array
 
     if (is_archive()) {
         if (is_date()) {
-            $dataLayer['query']['date'] = get_the_date();
+            $dataLayer['date'] = get_the_date();
         }
 
         if (is_search()) {
-            $dataLayer['query']['search'] = get_search_query();
+            $dataLayer['search'] = get_search_query();
         }
 
         if (is_post_type_archive()) {
-            $dataLayer['query']['post_type'] = get_post_type();
+            $dataLayer['post_type'] = get_post_type();
         }
 
         if (is_tag() || is_category() || is_tax()) {
             $term = get_queried_object();
 
-            $dataLayer['query'][$term->taxonomy] = [
+            $dataLayer[$term->taxonomy] = [
                 'id'   => $term->term_id,
                 'slug' => $term->slug,
                 'name' => $term->name,
@@ -94,7 +94,7 @@ function dataLayer(): array
         if (is_author()) {
             $user = get_queried_object();
 
-            $dataLayer['query']['author'] = [
+            $dataLayer['author'] = [
                 'id'   => $user->get('ID'),
                 'slug' => $user->get('user_nicename'),
                 'name' => $user->get('display_name'),
@@ -103,7 +103,7 @@ function dataLayer(): array
     }
 
     if (is_singular()) {
-        $dataLayer['query']['post'] = [
+        $dataLayer[get_post_type()] = [
             'id'           => get_the_ID(),
             'slug'         => get_post_field('post_name'),
             'type'         => get_post_type(),
@@ -114,7 +114,7 @@ function dataLayer(): array
             'modified_at'  => get_the_modified_date('c'),
         ];
 
-        $dataLayer['query']['post']['author'] = [
+        $dataLayer[get_post_type()]['author'] = [
             'id'   => get_the_author_meta('ID'),
             'slug' => get_the_author_meta('user_nicename'),
             'name' => get_the_author_meta('display_name'),
@@ -128,11 +128,11 @@ function dataLayer(): array
         // TODO: ugly :(
         foreach ($taxonomies as $taxonomy) {
             $terms = get_the_terms(get_the_ID(), $taxonomy->name);
-            if (is_wp_error($terms)) {
+            if (!$terms || is_wp_error($terms)) {
                 continue;
             }
 
-            $dataLayer['query']['post'][$taxonomy->name] = array_column($terms, 'slug');
+            $dataLayer[get_post_type()][$taxonomy->name] = array_column($terms, 'slug');
         }
     }
 
