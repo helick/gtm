@@ -55,12 +55,21 @@ final class AdminBar implements Bootable
         $dataLayer = dataLayer();
 
         // Flatten data layer
-        $iterator = new RecursiveArrayIterator($dataLayer);
-        $iterator = new RecursiveIteratorIterator($iterator);
+        $flatten = static function (array $data, string $prefix = '') use (&$flatten) {
+            $flattened = [];
 
-        $dataLayer = iterator_to_array($iterator);
+            foreach ($data as $key => $value) {
+                if (is_array($value)) {
+                    $flattened = array_merge($flattened, $flatten($value, $prefix . $key . '.'));
+                } else {
+                    $flattened[$prefix . $key] = trim(json_encode($value), '""');
+                }
+            }
 
-        foreach ($dataLayer as $key => $value) {
+            return $flattened;
+        };
+
+        foreach ($flatten($dataLayer) as $key => $value) {
             $adminBar->add_node([
                 'id'     => sanitize_key('helick-gtm-' . $key),
                 'parent' => 'helick-gtm',
