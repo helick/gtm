@@ -95,9 +95,9 @@ function dataLayer(): array
             $user = get_queried_object();
 
             $dataLayer['author'] = [
-                'id'   => $user->get('ID'),
-                'slug' => $user->get('user_nicename'),
-                'name' => $user->get('display_name'),
+                'id'   => $user->ID,
+                'slug' => $user->user_nicename,
+                'name' => $user->display_name,
             ];
         }
     }
