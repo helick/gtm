@@ -2,7 +2,7 @@
 
 namespace Helick\GTM;
 
-use stdClass;
+use WP_Taxonomy;
 
 /**
  * Get the container ID.
@@ -121,7 +121,7 @@ function dataLayer(): array
         ];
 
         $taxonomies = get_object_taxonomies(get_post_type(), 'objects');
-        $taxonomies = array_filter($taxonomies, function (stdClass $taxonomy) {
+        $taxonomies = array_filter($taxonomies, function (WP_Taxonomy $taxonomy) {
             return $taxonomy->public;
         });
 
