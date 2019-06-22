@@ -16,4 +16,5 @@ require_once __DIR__ . '/src/helpers.php';
 
 // Services
 \Helick\GTM\AdminBar::boot();
+\Helick\GTM\EventTracking::boot();
 \Helick\GTM\Snippet::boot();
