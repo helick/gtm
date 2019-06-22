@@ -15,9 +15,9 @@ final class Snippet implements Bootable
     {
         $self = new static;
 
-        add_action('wp_head', [$self, 'dataLayer'], 1, 0);
-        add_action('wp_head', [$self, 'head'], 1, 0);
-        add_action('wp_body_open', [$self, 'body'], 1, 0);
+        add_action('wp_head', [$self, 'dataLayer']);
+        add_action('wp_head', [$self, 'head']);
+        add_action('wp_body_open', [$self, 'body']);
     }
 
     /**
