@@ -108,7 +108,7 @@ function dataLayer(): array
             'slug'         => get_post_field('post_name'),
             'title'        => get_the_title(),
             'template'     => get_page_template_slug(),
-            'comments'     => get_comments_number(),
+            'comments'     => (int)get_comments_number(),
             'published_at' => get_the_date('c'),
             'modified_at'  => get_the_modified_date('c'),
         ];
