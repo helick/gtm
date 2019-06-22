@@ -62,7 +62,7 @@ final class AdminBar implements Bootable
                 if (is_array($value)) {
                     $flattened = array_merge($flattened, $flatten($value, $prefix . $key . '.'));
                 } else {
-                    $flattened[$prefix . $key] = trim(json_encode($value), '""');
+                    $flattened[$prefix . $key] = trim(json_encode($value), '"');
                 }
             }
 
