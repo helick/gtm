@@ -76,7 +76,7 @@ final class AdminBar implements Bootable
                 'title'  => sprintf(
                     '<span style="font-weight: bold">%s:</span> %s',
                     $key,
-                    esc_html($value)
+                    wp_unslash($value)
                 ),
             ]);
         }
