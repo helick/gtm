@@ -33,7 +33,14 @@ final class AdminBar implements Bootable
         $isUserAllowed = current_user_can('manage_options');
         $isBackend     = is_admin();
 
-        if (!$isUserAllowed || $isBackend) {
+        /**
+         * Control whether to show the data layer UI.
+         *
+         * @param bool $isEnabled
+         */
+        $isEnabled = apply_filters('helick_gtm_enable_data_layer_ui', true);
+
+        if (!$isUserAllowed || $isBackend || !$isEnabled) {
             return;
         }
 
