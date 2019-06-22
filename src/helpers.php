@@ -106,7 +106,6 @@ function dataLayer(): array
         $dataLayer[get_post_type()] = [
             'id'           => get_the_ID(),
             'slug'         => get_post_field('post_name'),
-            'type'         => get_post_type(),
             'title'        => get_the_title(),
             'template'     => get_page_template_slug(),
             'comments'     => get_comments_number(),
