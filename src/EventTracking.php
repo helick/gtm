@@ -2,7 +2,7 @@
 
 namespace Helick\GTM;
 
-use Helick\GTM\Contracts\Bootable;
+use Helick\Contracts\Bootable;
 
 final class EventTracking implements Bootable
 {

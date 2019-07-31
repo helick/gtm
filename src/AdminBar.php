@@ -2,9 +2,7 @@
 
 namespace Helick\GTM;
 
-use Helick\GTM\Contracts\Bootable;
-use RecursiveArrayIterator;
-use RecursiveIteratorIterator;
+use Helick\Contracts\Bootable;
 use WP_Admin_Bar;
 
 final class AdminBar implements Bootable
