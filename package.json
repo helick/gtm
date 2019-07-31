@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@helick/related-posts",
+    "name": "@helick/gtm",
     "release": {
         "verifyConditions": [
             "@semantic-release/github"
