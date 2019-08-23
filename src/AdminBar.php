@@ -50,7 +50,7 @@ final class AdminBar implements Bootable
             ),
         ]);
 
-        $dataLayer = dataLayer();
+        $dataLayer = data_layer();
 
         // Flatten data layer
         $flatten = static function (array $data, string $prefix = '') use (&$flatten) {

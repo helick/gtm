@@ -29,8 +29,8 @@ final class Snippet implements Bootable
     {
         $snippet = '<script>%s=[%s]</script>';
 
-        $dataLayerVariable = dataLayerVariable();
-        $dataLayer         = dataLayer();
+        $dataLayerVariable = data_layer_variable();
+        $dataLayer         = data_layer();
 
         if (empty($dataLayer)) {
             return;
@@ -60,8 +60,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 HTML;
 
-        $dataLayerVariable = dataLayerVariable();
-        $containerId       = containerId();
+        $dataLayerVariable = data_layer_variable();
+        $containerId       = container_id();
 
         echo sprintf(
             $snippet,
@@ -84,7 +84,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 HTML;
 
-        $containerId = containerId();
+        $containerId = container_id();
 
         echo sprintf($snippet, esc_js($containerId)), "\n";
     }

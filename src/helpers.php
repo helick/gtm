@@ -9,7 +9,7 @@ use WP_Taxonomy;
  *
  * @return string
  */
-function containerId(): string
+function container_id(): string
 {
     return defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 }
@@ -19,7 +19,7 @@ function containerId(): string
  *
  * @return string
  */
-function dataLayerVariable(): string
+function data_layer_variable(): string
 {
     $dataLayerVar = 'dataLayer';
 
@@ -40,7 +40,7 @@ function dataLayerVariable(): string
  *
  * @return array
  */
-function dataLayer(): array
+function data_layer(): array
 {
     $dataLayer = [];
 
